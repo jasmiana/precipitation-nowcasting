@@ -15,7 +15,7 @@ def main():
     # Load 1 to 5
     print("Loading observation sequences...")
     obs_frames = []
-    for i in range(1, 6):
+    for i in range(1, 14):
         path = f"test_data/{i}.png"
         intensity = dp.image_to_intensity(path)
         obs_frames.append(intensity)
@@ -23,7 +23,7 @@ def main():
     # Load 6 to 10 for ground truth
     print("Loading ground truth sequences...")
     gt_frames = []
-    for i in range(6, 11):
+    for i in range(15, 18):
         path = f"test_data/{i}.png"
         gt_frames.append(dp.image_to_intensity(path))
         
@@ -39,7 +39,7 @@ def main():
     os.makedirs('output', exist_ok=True)
     
     for i, (pred, truth) in enumerate(zip(preds, gt_frames)):
-        frame_idx = i + 6
+        frame_idx = i + 14
         mse = evaluate_mse(pred, truth)
         print(f"Frame {frame_idx} MSE: {mse:.2f}")
         

@@ -29,14 +29,14 @@ def main():
         
     # Compute flow between 4 and 5
     print("Computing Optical Flow (frame 4 -> 5)...")
-    flow = predictor.calculate_flow(obs_frames[3], obs_frames[4])
+    flow = predictor.calculate_flow(obs_frames[-2], obs_frames[-1])
     
     # Predict 5 steps into the future
     print("Predicting future 5 steps...")
-    preds = predictor.extrapolate(obs_frames[4], flow, steps=5)
+    preds = predictor.extrapolate(obs_frames[-1], flow, steps=5)
     
     # Evaluate and save
-    os.makedirs('output', exist_ok=True)
+    os.makedirs('outputs', exist_ok=True)
     
     for i, (pred, truth) in enumerate(zip(preds, gt_frames)):
         frame_idx = i + 14
@@ -54,7 +54,7 @@ def main():
         cv2.putText(combined, f"Frame {frame_idx} - Ground Truth", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
         cv2.putText(combined, f"Frame {frame_idx} - Prediction", (truth_img.shape[1] + 10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
         
-        out_path = f"output/compare_{frame_idx}.png"
+        out_path = f"outputs/compare_{frame_idx}.png"
         cv2.imwrite(out_path, combined)
         print(f"Saved comparison to {out_path}")
 

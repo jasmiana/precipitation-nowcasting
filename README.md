@@ -25,4 +25,4 @@ Results in `output/` folder.
 ### Timeline
 
 * 26/4/23 - Start Implementing
-
+* 26/4/28 - Two Types of ConvLSTM

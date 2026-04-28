@@ -56,7 +56,7 @@ class Seq2SeqConvLSTM(nn.Module):
             nn.LeakyReLU(0.2, inplace=True)
         )
         
-        # 核心时序模块，在缩小后的特征图 16x16 上运行，极大节省显存
+        # 核心时序模块，在缩小后的特征图 16x16 上运行，节省显存
         self.convlstm = ConvLSTMCell(input_dim=32, hidden_dim=hidden_dim, kernel_size=3)
         
         # Decoder: 把时序传递出的特征上采样回原样
